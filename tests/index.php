@@ -21,6 +21,10 @@
     $url = $_SERVER['REQUEST_URI'];
     $method = $_SERVER['REQUEST_METHOD'];
 
-    echo '<pre>';
-    print_r($router->getRoute($method, $url));
-    echo '</pre>';
+    if ($route = $router->getRoute($method, $url)) {
+        $route->getAction()();
+    }
+
+    // echo '<pre>';
+    // print_r();
+    // echo '</pre>';

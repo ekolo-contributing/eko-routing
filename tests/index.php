@@ -22,7 +22,7 @@
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($route = $router->getRoute($method, $url)) {
-        $route->getAction()();
+        $route->action()();
     }
 
     // echo '<pre>';

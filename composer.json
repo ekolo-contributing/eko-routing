@@ -1,0 +1,20 @@
+{
+    "name": "ekolo/eko-routing",
+    "description": "Permet de faire la routing des diff\u0000rentes routes \u0000 g\u0000rer",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Don de Dieu BOLENGE",
+            "email": "dondedieubolenge@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ekolo\\Component\\Routing\\": "src/"
+        }
+    }
+}

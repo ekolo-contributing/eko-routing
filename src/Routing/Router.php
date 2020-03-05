@@ -19,38 +19,40 @@
 		 */
 		public function getRoute($method, $url)
 		{
-			$urls = [];
-
-			foreach ($this->routes[$method] as $route) {
-				// Si la route correspond à l'URL
-				if (($varsValues = $route->match($url)) !== false) {
-					// Si elle a des variables
-
-					if ($route->hasVars()) {
-						$varsNames = $route->varsNames();
-						$listVars = [];
-
-						foreach ($varsValues as $key => $match) {
-							if ($key !== 0) {
-								$listVars[$varsNames[$key - 1]] = $match;
-							}else{
-								$listVars['url'] = substr($match, 1);
-							}
-
-						}
-
-						$route->setVars($listVars);
-					}else{
-						
-						if (count($varsValues) > 1) {
-							$route->setVars(['id' => $varsValues[1]]);
-						}
-						
-					}
-
-					return $route;
-				}
-			}
+            $urls = [];
+            
+            if (!empty($this->routes[$method])) {
+                foreach ($this->routes[$method] as $route) {
+                    // Si la route correspond à l'URL
+                    if (($varsValues = $route->match($url)) !== false) {
+                        // Si elle a des variables
+    
+                        if ($route->hasVars()) {
+                            $varsNames = $route->varsNames();
+                            $listVars = [];
+    
+                            foreach ($varsValues as $key => $match) {
+                                if ($key !== 0) {
+                                    $listVars[$varsNames[$key - 1]] = $match;
+                                }else{
+                                    $listVars['url'] = substr($match, 1);
+                                }
+    
+                            }
+    
+                            $route->setVars($listVars);
+                        }else{
+                            
+                            if (count($varsValues) > 1) {
+                                $route->setVars(['id' => $varsValues[1]]);
+                            }
+                            
+                        }
+    
+                        return $route;
+                    }
+                }
+            }
 		}
 
 		/**
